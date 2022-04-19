@@ -3,5 +3,10 @@ version: '${project.version}'
 main: de.scynostv.movecraft2.core
 api-version: 1.18
 depend: [ InventoryApi ]
-authors: [ ChiAkuma, CG ]
+authors: [ ChiAkuma, John Dee Zimmermann ]
 description: Movecraft 2 is a adaption of the old movecraft plugin.
+commands:
+  ship:
+    description: Controls all the ship relevant things
+    usage: /ship build <on/off>
+    permission: movecraft2.ship
