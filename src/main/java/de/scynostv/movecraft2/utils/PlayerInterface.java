@@ -7,7 +7,7 @@ import java.util.UUID;
 import org.bukkit.entity.Player;
 
 public class PlayerInterface {
-    private static Map playerMap = new HashMap<UUID, PlayerInterface>();
+    private static Map<UUID, PlayerInterface> playerMap = new HashMap<>();
 
     public static void add(Player player) {
         playerMap.put(player.getUniqueId(), new PlayerInterface(player)); 
@@ -53,5 +53,4 @@ public class PlayerInterface {
     public Player getPlayer() {
         return this.playerReference; 
     }
-
 }
