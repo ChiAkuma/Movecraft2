@@ -3,7 +3,6 @@ package de.scynostv.movecraft2.blocks;
 import de.scynostv.movecraft2.core.Ship;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.block.Block;
 
 public class ShipBlock {
 
@@ -16,6 +15,7 @@ public class ShipBlock {
         this.ship = _ship;
         this.location = _location;
         this.blockMaterial = _blockMaterial;
+        if (!checkBlock()) regenerateBlock();
     }
 
     public void deleteBlock() {
@@ -24,6 +24,16 @@ public class ShipBlock {
 
     public void generateBlock() {
         this.location.getBlock().setType(blockMaterial);
+    }
+
+    public void regenerateBlock() {
+        deleteBlock();
+        generateBlock();
+    }
+
+    public boolean checkBlock() {
+        if (blockMaterial.equals(this.location.getBlock().getType())) return true;
+        return false;
     }
 
 }

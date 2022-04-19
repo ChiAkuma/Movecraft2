@@ -1,6 +1,6 @@
 name: de.scynostv.movecraft2.core
 version: '${project.version}'
-main: de.scynostv.movecraft2.core
+main: de.scynostv.movecraft2.core.Core
 api-version: 1.18
 depend: [ InventoryApi ]
 authors: [ ChiAkuma, John Dee Zimmermann ]
