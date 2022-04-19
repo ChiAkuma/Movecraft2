@@ -6,13 +6,12 @@ import org.bukkit.Material;
 
 public class ShipBlock {
 
-    Ship ship;
-    Location location;
-    Material blockMaterial;
+    private Ship ship;
+    private Location location;
+    private Material blockMaterial;
 
 
-    public ShipBlock(Ship _ship, Location _location, Material _blockMaterial) {
-        this.ship = _ship;
+    public ShipBlock(Location _location, Material _blockMaterial) {
         this.location = _location;
         this.blockMaterial = _blockMaterial;
         if (!checkBlock()) regenerateBlock();
@@ -29,6 +28,14 @@ public class ShipBlock {
     public void regenerateBlock() {
         deleteBlock();
         generateBlock();
+    }
+
+    public void setShip(Ship ship) {
+        this.ship = ship; 
+    }
+
+    public Ship getShip() {
+        return this.ship; 
     }
 
     public boolean checkBlock() {

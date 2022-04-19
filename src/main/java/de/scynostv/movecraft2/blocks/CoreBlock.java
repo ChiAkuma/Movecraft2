@@ -7,8 +7,8 @@ import org.bukkit.Material;
 
 public class CoreBlock extends ShipBlock{
 
-    public CoreBlock(Location _location, Ship _ship) {
-        super(_ship, _location, Material.REDSTONE_BLOCK);
+    public CoreBlock(Location _location) {
+        super(_location, Material.REDSTONE_BLOCK);
     }
 
     public Inventory touch() {

@@ -15,18 +15,6 @@ public class Ship {
 
     private static List<Ship> shipsLoaded = new ArrayList<>();
 
-
-    private Location location;
-    private String ownerUUID;
-    private List<String> shipMembersUUID = new ArrayList<>();
-
-    private CoreBlock coreBlock;
-    private List<ShipBlock> shipBlockList = new ArrayList<>(); 
-
-    public Ship() {
-        
-    }
-
     public static Ship getShipAtLocation(Location loc) {
         
 
@@ -42,12 +30,50 @@ public class Ship {
         return null; 
     }
 
+    public static Ship generateShipFromCoreBlock(CoreBlock block) {
+        Ship ship = new Ship(block);
+        ship.addBlock(block);
+
+        return ship; 
+    }
+
+    public static void registerShip(Ship ship) {
+        shipsLoaded.add(ship);
+    }
+
+
+
+    private Location location;
+    private String ownerUUID;
+    private List<String> shipMembersUUID = new ArrayList<>();
+
+    private CoreBlock coreBlock;
+    private List<ShipBlock> shipBlockList = new ArrayList<>(); 
+
+    public Ship() {
+        
+    }
+
+    public Ship(CoreBlock block) {
+        this.coreBlock = block; 
+    }
+
+
     public CoreBlock getCoreBlock() {
         return this.coreBlock; 
     }
+
 
     public List<ShipBlock> getShipBlocks() {
         return this.shipBlockList; 
     }
 
+    public void addBlock(ShipBlock block) {
+        this.shipBlockList.add(block); 
+        block.setShip(this);
+    }
+
+    
+
+    
 }
