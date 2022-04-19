@@ -13,6 +13,9 @@ import java.util.Map;
 
 public class Ship {
 
+    private static List<Ship> shipsLoaded = new ArrayList<>();
+
+
     private Location location;
     private String ownerUUID;
     private List<String> shipMembersUUID = new ArrayList<>();
@@ -24,19 +27,27 @@ public class Ship {
         
     }
 
-    public Ship getShipAtLocation(Location loc) {
+    public static Ship getShipAtLocation(Location loc) {
         
-        for (var block : shipBlockList) {
-            if (BlockUtils.LocationsEqual(loc, block.getLocation())) {
-                return this; 
+
+        for (var ship : shipsLoaded ){
+            for (var block : ship.getShipBlocks()) {
+                if (BlockUtils.LocationsEqual(loc, block.getLocation())) {
+                    return ship; 
+                }
             }
         }
+        
 
         return null; 
     }
 
     public CoreBlock getCoreBlock() {
         return this.coreBlock; 
+    }
+
+    public List<ShipBlock> getShipBlocks() {
+        return this.shipBlockList; 
     }
 
 }
