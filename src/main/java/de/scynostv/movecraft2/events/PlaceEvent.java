@@ -17,7 +17,6 @@ public class PlaceEvent implements Listener {
         
         checkCorePlacement(e);
         checkBlockExtensionPlacement(e);
-
     }
 
     /* All the different uses for block placing will be offloaded below... */
@@ -48,9 +47,20 @@ public class PlaceEvent implements Listener {
         //Is the block placed to a ship, owned by the player? 
         var ship = Ship.getShipAtLocation(blockAgainst.getLocation());
         if (ship == null) return; 
-        if (ship.getOwner() != p.getUniqueId()) return;
 
 
+        if (ship.getOwner() != p.getUniqueId()) {
+            p.sendMessage("§4You cannot modify other people's ships!");
+            e.setCancelled(true);
+            return;
+        } 
+
+        if (!ship.isBuildMode()) {
+            p.sendMessage("§4Enable build mode first!");
+            e.setCancelled(true);
+            return;
+        }
+        
         var sBlock = ShipBlock.make(block); 
         ship.addBlock(sBlock);
 

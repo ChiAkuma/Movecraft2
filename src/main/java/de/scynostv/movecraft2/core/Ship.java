@@ -77,6 +77,16 @@ public class Ship {
         block.setShip(this);
     }
 
+    public void removeBlock(Location loc) {
+        for (int i = 0; i<shipBlockList.size(); i++) { //Standard for-loop to avoid concurrent modifcation exception
+            var shipBlock = shipBlockList.get(i);
+            if (!BlockUtils.LocationsEqual(shipBlock.getLocation(), loc))
+                continue;
+            
+            shipBlockList.remove(i);
+        }
+    }
+
     public UUID getOwner() {
         return this.owner; 
     }

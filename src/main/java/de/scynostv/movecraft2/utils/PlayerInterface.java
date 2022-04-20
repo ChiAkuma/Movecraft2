@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import de.scynostv.movecraft2.core.Ship;
@@ -21,6 +22,10 @@ public class PlayerInterface {
         if (!playerMap.containsKey(id)) return;
 
         playerMap.remove(id);
+    }
+
+    public static void addAll() {
+        Bukkit.getOnlinePlayers().forEach(PlayerInterface::add);
     }
 
     public static PlayerInterface get(UUID id) {
