@@ -52,4 +52,8 @@ public class ShipBlock {
         return this.location; 
     }
 
+    public void setLocation(Location loc) {
+        this.location = loc; 
+    }
+
 }

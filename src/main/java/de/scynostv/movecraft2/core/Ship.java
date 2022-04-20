@@ -102,4 +102,14 @@ public class Ship {
     public void setBuildMode(boolean b) {
         this.buildMode = b; 
     }
+
+    public void move(int x, int y, int z) {
+        for (var block : shipBlockList) {
+            block.deleteBlock();
+            block.setLocation(block.getLocation().add(x, y, z));
+            block.generateBlock();
+        }
+
+        this.location = coreBlock.getLocation();
+    }
 }
