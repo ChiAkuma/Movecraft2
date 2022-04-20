@@ -30,6 +30,7 @@ public class InteractEvent implements Listener {
         var p = e.getPlayer(); 
         var coreblock = ship.getCoreBlock(); 
 
+        if (p.isSneaking()) return; //If the player is sneaking, the menu should not open
         if (!BlockUtils.LocationsEqual(coreblock.getLocation(), location)) return; //We only want to continue, if it's the core block
         
         var menu = new MenuCore(ship);
