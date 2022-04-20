@@ -6,6 +6,8 @@ import java.util.UUID;
 
 import org.bukkit.entity.Player;
 
+import de.scynostv.movecraft2.core.Ship;
+
 public class PlayerInterface {
     private static Map<UUID, PlayerInterface> playerMap = new HashMap<>();
 
@@ -35,22 +37,41 @@ public class PlayerInterface {
         return null; 
     }
 
-    public static Player getByPlayer(Player player) {
+    public static PlayerInterface getByPlayer(Player player) {
         var id = player.getUniqueId(); 
 
         if (playerMap.containsKey(id)) 
-        return (Player) playerMap.get(id); 
+        return playerMap.get(id); 
 
         return null; 
     }
     
     
     private Player playerReference; 
+
+    private Ship mounting = null; 
+    private Ship menuShip = null; 
     public PlayerInterface(Player player) {
         this.playerReference = player; 
     }
 
     public Player getPlayer() {
         return this.playerReference; 
+    }
+
+    public Ship getMounting() {
+        return this.mounting; 
+    }
+
+    public void setMounting(Ship ship) {
+        this.mounting = ship; 
+    }
+
+    public void setMenuShip(Ship ship){
+        this.menuShip = ship;
+    }
+
+    public Ship getMenuShip() {
+        return this.menuShip; 
     }
 }
