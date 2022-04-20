@@ -23,6 +23,8 @@ public class ShipBlock {
     }
 
     public void deleteBlock() {
+        //If during movement, another block has also been assigned this location, then filling the place with air would delete the other block
+        if (ship != null && ship.getAllBlocksAtLocation(location).size() > 1) return; 
         this.location.getBlock().setType(Material.AIR);
     }
 

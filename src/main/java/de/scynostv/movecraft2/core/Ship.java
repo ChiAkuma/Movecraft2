@@ -103,6 +103,18 @@ public class Ship {
         this.buildMode = b; 
     }
 
+    public List<ShipBlock> getAllBlocksAtLocation(Location loc) {
+
+        var list = new ArrayList<ShipBlock>(1); 
+
+        for (var block : shipBlockList) {
+            if (BlockUtils.LocationsEqual(loc, block.getLocation()))
+                list.add(block);
+        }
+
+        return list;
+    }
+
     public void move(int x, int y, int z) {
         for (var block : shipBlockList) {
             block.deleteBlock();

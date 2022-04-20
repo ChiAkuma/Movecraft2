@@ -6,6 +6,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import de.scynostv.movecraft2.commands.*;
 import de.scynostv.movecraft2.events.BreakEvent;
 import de.scynostv.movecraft2.events.InteractEvent;
+import de.scynostv.movecraft2.events.MoveEvent;
 import de.scynostv.movecraft2.events.PlaceEvent;
 import de.scynostv.movecraft2.events.PlayerInterfaceEventResolver;
 import de.scynostv.movecraft2.inventories.core.MenuCoreListener;
@@ -37,6 +38,7 @@ public final class Core extends JavaPlugin {
         manager.registerEvents(new InteractEvent(), this);
         manager.registerEvents(new MenuCoreListener(), this);
         manager.registerEvents(new BreakEvent(), this);
+        manager.registerEvents(new MoveEvent(), this);
 
     }
 }

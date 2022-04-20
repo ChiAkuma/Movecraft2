@@ -8,7 +8,7 @@ public class BlockUtils {
     {
         return (a.getBlockX() == b.getBlockX() &&
                 a.getBlockY() == b.getBlockY() &&
-                b.getBlockZ() == b.getBlockZ()); 
+                a.getBlockZ() == b.getBlockZ()); 
     }
 
     
