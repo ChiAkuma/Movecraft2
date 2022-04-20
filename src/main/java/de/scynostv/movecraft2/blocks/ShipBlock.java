@@ -3,13 +3,18 @@ package de.scynostv.movecraft2.blocks;
 import de.scynostv.movecraft2.core.Ship;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.block.Block;
 
 public class ShipBlock {
+
+    public static ShipBlock make(Block block) {
+        return new ShipBlock(block.getLocation(), block.getBlockData().getMaterial()); 
+    }
+
 
     private Ship ship;
     private Location location;
     private Material blockMaterial;
-
 
     public ShipBlock(Location _location, Material _blockMaterial) {
         this.location = _location;

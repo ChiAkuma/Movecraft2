@@ -3,13 +3,14 @@ package de.scynostv.movecraft2.core;
 import de.scynostv.movecraft2.blocks.CoreBlock;
 import de.scynostv.movecraft2.blocks.ShipBlock;
 import de.scynostv.movecraft2.utils.BlockUtils;
+import de.scynostv.movecraft2.utils.PlayerInterface;
 
 import org.bukkit.Location;
+import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import java.util.UUID;
 
 public class Ship {
 
@@ -30,8 +31,8 @@ public class Ship {
         return null; 
     }
 
-    public static Ship generateShipFromCoreBlock(CoreBlock block) {
-        Ship ship = new Ship(block);
+    public static Ship generateShipFromCoreBlock(CoreBlock block, UUID owner) {
+        Ship ship = new Ship(block, owner);
         ship.addBlock(block);
 
         return ship; 
@@ -49,13 +50,16 @@ public class Ship {
 
     private CoreBlock coreBlock;
     private List<ShipBlock> shipBlockList = new ArrayList<>(); 
+    private UUID owner;  //Storing the player as a UUID reference makes more sense in case he/she is offline.
+    private boolean buildMode; 
 
-    public Ship() {
-        
+    public Ship(UUID owner) {
+        this.owner = owner; 
     }
 
-    public Ship(CoreBlock block) {
+    public Ship(CoreBlock block, UUID owner) {
         this.coreBlock = block; 
+        this.owner = owner; 
     }
 
 
@@ -73,7 +77,19 @@ public class Ship {
         block.setShip(this);
     }
 
-    
+    public UUID getOwner() {
+        return this.owner; 
+    }
 
-    
+    public Player getOwnerAsPlayer() {
+        return PlayerInterface.get(this.owner).getPlayer(); 
+    }
+
+    public boolean isBuildMode() {
+        return buildMode; 
+    }
+
+    public void setBuildMode(boolean b) {
+        this.buildMode = b; 
+    }
 }
