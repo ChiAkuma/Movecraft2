@@ -50,11 +50,7 @@ public class MenuCoreListener implements Listener {
 
     public void onMountClick(Ship ship, PlayerInterface playerInterface) {
 
-        if (playerInterface.getMounting() == ship) {
-            playerInterface.setMounting(null);
-        } else {
-            playerInterface.setMounting(ship);
-        }
+        playerInterface.mount(ship);
 
         playerInterface.getPlayer().sendMessage("§aMount mode changed to " + (playerInterface.getMounting() != null));
         playerInterface.getPlayer().closeInventory();

@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
 import de.scynostv.movecraft2.core.Ship;
@@ -70,6 +71,19 @@ public class PlayerInterface {
 
     public void setMounting(Ship ship) {
         this.mounting = ship; 
+    }
+
+    public void mount(Ship ship) {
+        if (ship == mounting) {
+            mounting = null;
+            return;
+        }
+        mounting = ship;
+
+        var locCore = ship.getCoreBlock().getLocation(); 
+        var locTarget = new Location(locCore.getWorld(), locCore.getX(), locCore.getY()+1, locCore.getZ()); //Location that is on top of the core block.
+        playerReference.teleport(locTarget);
+
     }
 
     public void setMenuShip(Ship ship){

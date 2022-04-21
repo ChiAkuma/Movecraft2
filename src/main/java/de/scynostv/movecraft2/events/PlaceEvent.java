@@ -1,5 +1,6 @@
 package de.scynostv.movecraft2.events;
 
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -8,6 +9,7 @@ import org.bukkit.event.block.BlockPlaceEvent;
 import de.scynostv.movecraft2.blocks.CoreBlock;
 import de.scynostv.movecraft2.blocks.ShipBlock;
 import de.scynostv.movecraft2.core.Ship;
+import de.scynostv.movecraft2.utils.BlockUtils;
 
 public class PlaceEvent implements Listener {
 
@@ -59,6 +61,17 @@ public class PlaceEvent implements Listener {
             p.sendMessage("§4Enable build mode first!");
             e.setCancelled(true);
             return;
+        }
+
+        //Checking, whether the block is above the core.
+        var coreLoc = ship.getCoreBlock().getLocation();
+        for (int i = 1; i<=2; i++) {
+            Location locAbove = new Location(coreLoc.getWorld(), coreLoc.getX(), coreLoc.getY()+i, coreLoc.getZ());
+            if (BlockUtils.LocationsEqual(locAbove, block.getLocation())) {
+                p.sendMessage("§4You have to have at least two free blocks above the core!");
+                e.setCancelled(true);
+                return;
+            }
         }
         
         var sBlock = ShipBlock.make(block); 
