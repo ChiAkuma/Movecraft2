@@ -14,6 +14,8 @@ import java.util.UUID;
 
 public class Ship {
 
+    public static final int MIN_HEIGHT = 64; //We don't want the player to be able to move the ship into the void. 
+
     private static List<Ship> shipsLoaded = new ArrayList<>();
 
     public static Ship getShipAtLocation(Location loc) {
@@ -116,6 +118,9 @@ public class Ship {
     }
 
     public void move(int x, int y, int z) {
+        if (coreBlock.getLocation().getBlockY()-y  < MIN_HEIGHT && y < 0) 
+            y = 0; //Making sure, the ship cannot move below the minimum height.  
+
         for (var block : shipBlockList) {
             block.deleteBlock();
             block.setLocation(block.getLocation().add(x, y, z));

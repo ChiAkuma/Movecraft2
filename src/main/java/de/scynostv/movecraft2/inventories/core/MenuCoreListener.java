@@ -15,7 +15,7 @@ public class MenuCoreListener implements Listener {
     public void onInventoryClick(InventoryClickEvent e) {
         var p = (Player) e.getWhoClicked();
         var playerInterface = PlayerInterface.getByPlayer(p); 
-        int slot = e.getSlot(); 
+        int slot = e.getSlot();
 
         if (playerInterface.getMenuShip() == null) return; 
 

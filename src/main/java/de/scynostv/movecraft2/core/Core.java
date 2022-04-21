@@ -9,6 +9,7 @@ import de.scynostv.movecraft2.events.InteractEvent;
 import de.scynostv.movecraft2.events.MoveEvent;
 import de.scynostv.movecraft2.events.PlaceEvent;
 import de.scynostv.movecraft2.events.PlayerInterfaceEventResolver;
+import de.scynostv.movecraft2.events.SneakEvent;
 import de.scynostv.movecraft2.inventories.core.MenuCoreListener;
 import de.scynostv.movecraft2.utils.PlayerInterface;
 
@@ -39,6 +40,7 @@ public final class Core extends JavaPlugin {
         manager.registerEvents(new MenuCoreListener(), this);
         manager.registerEvents(new BreakEvent(), this);
         manager.registerEvents(new MoveEvent(), this);
+        manager.registerEvents(new SneakEvent(), this);
 
     }
 }
