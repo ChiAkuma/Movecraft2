@@ -1,7 +1,6 @@
 package de.scynostv.movecraft2.core;
 
 import org.bukkit.Bukkit;
-import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import de.scynostv.movecraft2.commands.*;
 import de.scynostv.movecraft2.events.BreakEvent;
