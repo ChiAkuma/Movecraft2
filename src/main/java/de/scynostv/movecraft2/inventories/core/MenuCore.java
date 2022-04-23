@@ -1,5 +1,6 @@
 package de.scynostv.movecraft2.inventories.core;
 
+import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -36,8 +37,8 @@ public class MenuCore {
         var mBuild = isBuild.getItemMeta(); 
         var mMount = isMount.getItemMeta(); 
 
-        mBuild.setDisplayName("§aBuild"); //Deprecated but what else?????
-        mMount.setDisplayName("§aMount");
+        mBuild.displayName(Component.text("§aBuild"));
+        mMount.displayName(Component.text("§aMount"));
 
         isBuild.setItemMeta(mBuild);
         isMount.setItemMeta(mMount);
