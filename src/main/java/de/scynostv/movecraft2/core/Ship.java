@@ -5,6 +5,7 @@ import de.scynostv.movecraft2.blocks.ShipBlock;
 import de.scynostv.movecraft2.utils.BlockUtils;
 import de.scynostv.movecraft2.utils.PlayerInterface;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
@@ -53,7 +54,8 @@ public class Ship {
     private CoreBlock coreBlock;
     private List<ShipBlock> shipBlockList = new ArrayList<>(); 
     private UUID owner;  //Storing the player as a UUID reference makes more sense in case he/she is offline.
-    private boolean buildMode; 
+    private boolean buildMode = false; 
+    private boolean mounted = false;
 
     public Ship(UUID owner) {
         this.owner = owner; 
@@ -128,5 +130,38 @@ public class Ship {
         }
 
         this.location = coreBlock.getLocation();
+    }
+
+    public void updateAllInventories() {
+        shipBlockList.forEach((var block) -> {block.updateInventory();});
+    }
+
+    public boolean isMounted() {
+        return this.mounted;
+    }
+
+    public void setMounted(boolean val) {
+        this.mounted = val; 
+    }
+
+    public void closeAllInventories() {
+        for (ShipBlock shipBlock : shipBlockList) {
+            var block = shipBlock.getBlockAtLocation();
+            var inv = BlockUtils.getInventoryFromBlock(block);
+
+            if (inv == null) continue;
+
+            for(Player p : Bukkit.getServer().getOnlinePlayers()) {
+                var playerInv = p.getOpenInventory().getTopInventory();
+
+                if (playerInv == null) continue; 
+                
+                var locInv = playerInv.getLocation(); 
+
+                if (BlockUtils.LocationsEqual(locInv, shipBlock.getLocation()))
+                    p.closeInventory();
+            }
+
+        }
     }
 }

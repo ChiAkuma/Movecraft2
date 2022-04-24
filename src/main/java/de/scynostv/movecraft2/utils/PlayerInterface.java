@@ -76,13 +76,22 @@ public class PlayerInterface {
     public void mount(Ship ship) {
         if (ship == mounting) {
             mounting = null;
+            ship.setMounted(false);
             return;
         }
+
+        if (ship.isMounted()) return;
+
         mounting = ship;
+        ship.setMounted(true);
+
 
         var locCore = ship.getCoreBlock().getLocation(); 
         var locTarget = new Location(locCore.getWorld(), locCore.getX(), locCore.getY()+1, locCore.getZ()); //Location that is on top of the core block.
         playerReference.teleport(locTarget);
+        
+        ship.closeAllInventories();
+        ship.updateAllInventories();
 
     }
 

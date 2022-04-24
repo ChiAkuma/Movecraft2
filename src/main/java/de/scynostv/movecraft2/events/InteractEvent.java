@@ -1,5 +1,6 @@
 package de.scynostv.movecraft2.events;
 
+import org.bukkit.block.Container;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
@@ -22,6 +23,7 @@ public class InteractEvent implements Listener {
         if (ship == null) return;  //We only want to continue if the block is of a ship
 
         coreBlockRightClick(e, ship); //All the actions relating to right clicking the core block
+        containerOpen(e, ship); //In case the container is being opened while the ship is mounted
     } 
 
 
@@ -37,6 +39,21 @@ public class InteractEvent implements Listener {
         menu.open(p);
 
         p.sendMessage("§cThis is the coreblock of a ship.");
+    }
+
+    public void containerOpen(PlayerInteractEvent e, Ship ship) {
+        var block = e.getClickedBlock();
+        var blockState = block.getState(); 
+        var p = e.getPlayer(); 
+
+        if (!ship.isMounted()) return; 
+
+        if (!(blockState instanceof Container)) return; 
+
+        e.setCancelled(true);
+        
+        p.sendMessage("§4This cannot be opened while the ship is mounted.");
+
     }
 
 }
